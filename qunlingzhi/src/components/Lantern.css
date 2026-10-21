@@ -1,0 +1,100 @@
+.lantern {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transform-origin: top center;
+  transition: transform 0.6s var(--ease-out), filter 0.6s ease;
+  z-index: 10;
+}
+
+.lantern:hover {
+  transform: scale(1.06);
+}
+
+.lantern-cord {
+  width: 2px;
+  height: 18px;
+  background: linear-gradient(to bottom, rgba(60, 50, 40, 0.4), rgba(60, 50, 40, 0.7));
+}
+
+.lantern-body {
+  position: relative;
+  width: 34px;
+  height: 46px;
+  border-radius: 50% 50% 48% 48% / 60% 60% 40% 40%;
+  background: linear-gradient(180deg, #8a2e2e 0%, #b83a3a 40%, #9c2d2d 100%);
+  box-shadow:
+    inset 0 -6px 10px rgba(0, 0, 0, 0.25),
+    inset 0 4px 8px rgba(255, 200, 180, 0.15);
+  transition: box-shadow 0.8s ease, background 0.8s ease;
+}
+
+.lantern-body::before,
+.lantern-body::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 5px;
+  background: #5c2222;
+  border-radius: 2px;
+}
+
+.lantern-body::before { top: -3px; }
+.lantern-body::after { bottom: -3px; }
+
+.lantern-core {
+  position: absolute;
+  inset: 8px;
+  border-radius: 50%;
+  background: rgba(255, 180, 120, 0);
+  filter: blur(8px);
+  transition: background 0.8s ease, filter 0.8s ease;
+}
+
+.lantern-glow {
+  position: absolute;
+  inset: -40px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--lantern-glow) 0%, transparent 70%);
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 1s ease, transform 1s ease;
+  pointer-events: none;
+}
+
+.lantern-tassel {
+  width: 2px;
+  height: 14px;
+  background: rgba(140, 40, 40, 0.8);
+  margin-top: 2px;
+  border-radius: 0 0 2px 2px;
+}
+
+/* 点亮状态 */
+.lantern.lit .lantern-body {
+  background: linear-gradient(180deg, #c94a3a 0%, #ff7a5c 40%, #e06048 100%);
+  box-shadow:
+    0 0 30px var(--lantern-glow),
+    inset 0 -6px 10px rgba(0, 0, 0, 0.15),
+    inset 0 4px 12px rgba(255, 230, 200, 0.35);
+  animation: lanternPulse 3.5s ease-in-out infinite;
+}
+
+.lantern.lit .lantern-core {
+  background: rgba(255, 200, 140, 0.65);
+  filter: blur(10px);
+}
+
+.lantern.lit .lantern-glow {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.lantern.lit .lantern-tassel {
+  animation: vineSway 3s ease-in-out infinite;
+  transform-origin: top center;
+}

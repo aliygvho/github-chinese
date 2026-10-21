@@ -1,0 +1,158 @@
+.background-scene {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.bg-image {
+  position: absolute;
+  inset: -2%;
+  width: 104%;
+  height: 104%;
+  background: url('/bg.jpg') center center / cover no-repeat;
+  transform: scale(1.02);
+  filter: saturate(0.92) brightness(1.02);
+}
+
+/* 雾气 */
+.mist-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 30% 70%, rgba(255, 255, 255, 0.22) 0%, transparent 55%),
+              radial-gradient(ellipse at 70% 30%, rgba(255, 255, 255, 0.14) 0%, transparent 50%);
+  mix-blend-mode: screen;
+}
+
+.mist-layer-1 {
+  animation: mistDrift 18s ease-in-out infinite alternate;
+}
+
+.mist-layer-2 {
+  animation: mistDrift 24s ease-in-out infinite alternate-reverse;
+  opacity: 0.7;
+}
+
+/* 水面波光 */
+.water-shimmer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 42%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 245, 220, 0.04) 20%,
+    rgba(255, 245, 220, 0.10) 50%,
+    rgba(255, 245, 220, 0.04) 80%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 14s linear infinite;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+/* 垂藤 */
+.vine {
+  position: absolute;
+  top: -20px;
+  width: 3px;
+  height: 160px;
+  background: linear-gradient(to bottom, rgba(90, 140, 90, 0.7), rgba(90, 140, 90, 0));
+  border-radius: 0 0 50% 50%;
+  transform-origin: top center;
+  animation: vineSway 5s ease-in-out infinite;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.vine::after {
+  content: '';
+  position: absolute;
+  top: 40%;
+  left: 2px;
+  width: 16px;
+  height: 10px;
+  background: rgba(100, 155, 100, 0.5);
+  border-radius: 50%;
+  transform: rotate(-30deg);
+}
+
+.vine-1 { left: 8%; height: 140px; animation-duration: 6s; }
+.vine-2 { left: 18%; height: 190px; animation-duration: 5.2s; animation-delay: -1s; }
+.vine-3 { right: 12%; height: 170px; animation-duration: 5.8s; animation-delay: -2s; }
+
+/* 乌篷船 */
+.boat {
+  position: absolute;
+  bottom: 26%;
+  width: 110px;
+  height: 46px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  transition: left 0.1s linear;
+}
+
+.boat-hull {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 22px;
+  background: linear-gradient(180deg, #4a3b30 0%, #332820 100%);
+  border-radius: 0 0 55px 55px / 0 0 22px 22px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+}
+
+.boat-canopy {
+  position: absolute;
+  bottom: 16px;
+  left: 10%;
+  width: 80%;
+  height: 26px;
+  background: linear-gradient(180deg, #6b5140 0%, #4d3a2e 100%);
+  border-radius: 50% 50% 10% 10% / 80% 80% 20% 20%;
+}
+
+.boat-canopy::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    transparent 10px,
+    rgba(0, 0, 0, 0.1) 10px,
+    rgba(0, 0, 0, 0.1) 12px
+  );
+  border-radius: inherit;
+}
+
+.boat-ripple {
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  filter: blur(2px);
+  animation: ripple 3s ease-in-out infinite;
+}
+
+@keyframes ripple {
+  0%, 100% { transform: translateX(-50%) scaleX(1); opacity: 0.6; }
+  50% { transform: translateX(-50%) scaleX(1.15); opacity: 0.3; }
+}
+
+/* 暗角 */
+.vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(10, 20, 16, 0.25) 100%);
+}

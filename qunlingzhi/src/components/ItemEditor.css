@@ -1,0 +1,68 @@
+.item-editor {
+  padding: 24px;
+  margin-bottom: 24px;
+  animation: cardEnter 0.4s var(--ease-out);
+}
+
+.editor-field {
+  margin-bottom: 18px;
+}
+
+.editor-field > label {
+  display: block;
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+.editor-field input[type="text"].glass-input {
+  min-height: 44px;
+}
+
+.image-upload {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.image-preview {
+  position: relative;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.image-preview img {
+  max-width: 220px;
+  max-height: 160px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.remove-image {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(200, 110, 110, 0.85);
+  color: white;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.remove-image:hover {
+  transform: scale(1.1);
+}
+
+.editor-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}
